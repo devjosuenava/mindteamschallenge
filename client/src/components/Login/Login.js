@@ -1,3 +1,4 @@
+import React from 'react';
 import './Login.css';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
@@ -10,10 +11,7 @@ async function loginUser(credentials){
     },
     body: JSON.stringify(credentials)
   })
-    .then(async data => {      
-      const result = await data.json();      
-      return result;
-    });
+    .then(data => data.json());
 }
 
 const Login = ({ setToken }) => {
