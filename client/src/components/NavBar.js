@@ -34,12 +34,12 @@ export default function Navbar(){
                 <div className={ isNavExpanded ? "navigation-menu expanded" : "navigation-menu" }>
                     <ul>
                         <li>
-                            <Link to="/users" className="nav-link">
+                            <Link to="/users" className="nav-link" onClick={ () => { setIsNavExpanded(!isNavExpanded); } }>
                                 List Users
                             </Link>
                         </li>
                         <li>
-                            <Link to="/users/create" element={ <CreateUser />} className="nav-link">
+                            <Link to="/users/create" element={ <CreateUser />} className="nav-link" onClick={ () => { setIsNavExpanded(!isNavExpanded); } }>
                                 Create User
                             </Link>
                         </li>

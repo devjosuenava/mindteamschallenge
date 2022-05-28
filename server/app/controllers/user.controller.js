@@ -9,4 +9,4 @@ exports.allAccess = (req, res) => {
   };
   exports.superAdminBoard = (req, res) => {
     res.status(200).send("SuperAdmin Content.");
-  };
+};

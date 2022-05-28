@@ -12,17 +12,23 @@ module.exports = function(app) {
 
   app.get("/api/test/all", controller.allAccess);
 
-  app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
+  app.get("/api/test/user", 
+    [authJwt.verifyToken], 
+    controller.userBoard
+  );
 
-  app.get(
-    "/api/test/superAdmin",
+  app.get("/api/test/superAdmin",
     [authJwt.verifyToken, authJwt.isSuperAdmin],
     controller.superAdminBoard
   );
 
-  app.get(
-    "/api/test/admin",
+  app.get("/api/test/admin",
     [authJwt.verifyToken, authJwt.isAdmin],
     controller.adminBoard
   );
+
+  app.get("/api/getAllUsers", 
+    [authJwt.verifyToken, authJwt.isAdmin],
+    controller.adminBoard 
+  )
 };
