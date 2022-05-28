@@ -70,9 +70,37 @@ isSuperAdmin = (req, res, next) => {
     );
   });
 };
+isAdminOrSuperAdmin = (req, res, next) => {
+  User.findById(req.userId).exec((err, user) => {
+    if (err) {
+      res.status(500).send({ message: err });
+      return;
+    }
+    Role.findOne(
+      {
+        _id: user.role._id
+      },
+      (err, role) => {
+        if (err) {
+          res.status(500).send({ message: err });
+          return;
+        }
+        if (role.name === "superadmin" || role.name === "admin") {
+          next();
+          return;
+        }
+        res.status(403).send({ message: "Require SuperAdmin Role!" });
+        return;
+      }
+    );
+  });
+};
+
+
 const authJwt = {
   verifyToken,
   isAdmin,
-  isSuperAdmin
+  isSuperAdmin,
+  isAdminOrSuperAdmin
 };
 module.exports = authJwt;

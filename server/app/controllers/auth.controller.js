@@ -4,28 +4,28 @@ const User = db.user;
 const Role = db.role;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
-exports.signup = async (req, res) => {
+exports.signup = async (req, res) => {  
   const user = new User({
     fullName: req.body.fullName,
     email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8)    
+    password: bcrypt.hashSync(req.body.password, 8)
   });
   user.save((err, user) => {
     if (err) {
       res.status(500).send({ message: err });
       return;
     }
-    if (req.body.roles) {
-      Role.find(
+    if (req.body.role) {
+      Role.findOne(
         {
-          name: { $in: req.body.roles }
+          name: req.body.role
         },
-        (err, roles) => {
+        (err, role) => {
           if (err) {
             res.status(500).send({ message: err });
             return;
           }
-          user.roles = roles.map(role => role._id);
+          user.role = role._id;
           user.save(err => {
             if (err) {
               res.status(500).send({ message: err });
@@ -41,7 +41,7 @@ exports.signup = async (req, res) => {
           res.status(500).send({ message: err });
           return;
         }
-        user.roles = [role._id];
+        user.role = role._id;
         user.save(err => {
           if (err) {
             res.status(500).send({ message: err });
@@ -57,7 +57,7 @@ exports.signin = (req, res) => {
   User.findOne({
     email: req.body.email
   })
-    .populate("roles", "-__v")
+    .populate("role", "-__v")
     .exec((err, user) => {
       if (err) {
         res.status(500).send({ message: err });
@@ -79,15 +79,15 @@ exports.signin = (req, res) => {
       var token = jwt.sign({ id: user.id }, config.secret, {
         expiresIn: 86400 // 24 hours
       });
-      var authorities = [];
-      for (let i = 0; i < user.roles.length; i++) {
-        authorities.push(user.roles[i].name);
-      }
+      // var authorities = [];
+      // for (let i = 0; i < user.roles.length; i++) {
+      //   authorities.push(user.role.name);
+      // }
       res.status(200).send({
         id: user._id,
         fullName: user.fullName,
         email: user.email,
-        roles: authorities,
+        role: user.role.name,
         token: token
       });
     });

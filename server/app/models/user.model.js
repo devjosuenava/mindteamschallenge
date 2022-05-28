@@ -5,12 +5,10 @@ const User = mongoose.model(
     fullName: String,
     email: String,
     password: String,
-    roles: [
-      {
+    role: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Role"
       }
-    ]
   })
 );
 module.exports = User;
