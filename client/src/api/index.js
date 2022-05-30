@@ -4,20 +4,29 @@ const api = axios.create({
     baseURL: 'http://localhost:8080/api',
 })
 
-export const createUser = payload => api.post(`/users/create`, payload)
-export const getAllUsers = () => api.get(`/users`)
-// export const insertMovie = payload => api.post(`/movie`, payload)
-// export const getAllMovies = () => api.get(`/movies`)
+let config;
+if (window.localStorage.getItem('token')){
+    config = {
+        headers: {
+            'x-access-token': JSON.parse(window.localStorage.getItem('token')).token
+        }
+    }
+}
+
+
+export const getAllUsers = () => api.get('/getAllUsers', config)
+export const createUser = payload => api.post(`/users/create`, payload, config)
+export const updateUser = (id, payload) => api.put(`/user/${id}`, payload, config)
+export const deleteUser = id => api.delete(`/user/${id}`, config)
 // export const updateMovieById = (id, payload) => api.put(`/movie/${id}`, payload)
-// export const deleteMovieById = id => api.delete(`/movie/${id}`)
 // export const getMovieById = id => api.get(`/movie/${id}`)
 
 const apis = {
+    getAllUsers,
     createUser,
-    getAllUsers
-    // getAllMovies,
+    updateUser,
+    deleteUser
     // updateMovieById,
-    // deleteMovieById,
     // getMovieById,
 }
 

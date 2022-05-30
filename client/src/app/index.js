@@ -9,8 +9,7 @@ import Login from '../components/Login/Login'
 import useToken from './useToken'
 import Dashboard from '../components/Dashboard/Dashboard'
 import { NavBar } from '../components'
-import { CreateUser, ListUsers } from '../pages'
-
+import { CreateUser, ListUsers, EditUser } from '../pages'
 
 function App() {
   const { token, setToken } = useToken();
@@ -21,13 +20,17 @@ function App() {
   return (
     <div className='wrapper'>
       <Router>
-        <NavBar />
+      <NavBar />
+        <div className='container'>
         <Routes>
           <Route path="/" exact element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/users" element={<ListUsers />} />
           <Route path="/users/create" element={<CreateUser />} />
+          <Route path="/users/edit" element={<EditUser />} />
         </Routes>
+        </div>
+        
       </Router>
     </div>
   );

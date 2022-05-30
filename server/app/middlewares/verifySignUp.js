@@ -11,7 +11,7 @@ checkDuplicateEmail = (req, res, next) => {
       return;
     }
     if (user) {
-      res.status(400).send({ message: "Failed! Email is already in use!" });
+      res.status(200).send({ message: "Failed! Email is already in use!", status: 'error' });
       return;
     }
     next();
@@ -21,7 +21,7 @@ checkRoleExists = (req, res, next) => {
   if (req.body.role) {
     if (!ROLES.includes(req.body.role)) {
       res.status(400).send({
-        message: `Failed! Role ${req.body.roles[i]} does not exist!`
+        message: `Failed! Role ${req.body.role} does not exist!`, status: 'error'
       });
       return;
     }

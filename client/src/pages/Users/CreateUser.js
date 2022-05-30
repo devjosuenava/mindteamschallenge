@@ -1,11 +1,7 @@
-import React from 'react'
+import { UserContainer } from '../../components'
 
 const CreateUser = () => {
-    return (
-        <>
-            <h1>Create a new User</h1>
-        </>
-    )
+    return <UserContainer mode='create' />
 }
 
 export default CreateUser
