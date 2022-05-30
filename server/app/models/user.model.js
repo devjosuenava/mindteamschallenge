@@ -6,9 +6,9 @@ const User = mongoose.model(
     email: String,
     password: String,
     role: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Role"
-      }
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Role"
+    }
   })
 );
 module.exports = User;

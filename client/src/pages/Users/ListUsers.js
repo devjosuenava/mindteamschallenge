@@ -26,12 +26,12 @@ const ListUsers = () => {
       icon: tableIcons.Delete,
       tooltip: 'Delete User',
       onClick: (event, rowData) => api.deleteUser(rowData._id)
-        .then( 
+        .then(
           result => {
             setResultMessage({message: result.data.message, status: result.data.status})
             setOpen(true)
             setTimeout(() => setOpen(false), 3000)
-          }
+            setData( data.filter( item => item._id !== rowData._id ))          }
         )
     }
   ]
@@ -44,20 +44,20 @@ const ListUsers = () => {
     api.getAllUsers()
     .then( response => setData(response.data))
     .catch( err => {})
-  }, [data])
+  }, [])
 
   return (
     <>
       <h1>Users</h1>
-      <TableContainer 
-        title="Users" 
-        columns={columns} 
-        actions={actions} 
+      <TableContainer
+        title="Users"
+        columns={columns}
+        actions={actions}
         data={data}
         options={options}
       />
       <SnackAlert open={open} resultMessage={resultMessage} redirectionUrl='/users' />
-    </>    
+    </>
   )
 }
 
