@@ -29,9 +29,14 @@ exports.getAvailableAssociates = async (req, res) => {
       $project: {
         join: 0
       }
-    } 
+    }
   ])
   res.status(200).send(usersAvailable)
+};
+
+exports.getAccountAssociates = async (req, res) => {
+  const accountAssociates = await Associate.find({ account: req.body.id }).populate('user')
+  res.status(200).send(accountAssociates)
 };
 
 exports.createAssociate = (req, res) => {

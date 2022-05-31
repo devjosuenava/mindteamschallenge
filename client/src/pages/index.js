@@ -7,6 +7,8 @@ import EditUser from './Users/EditUser'
 import ListAccounts from './Accounts/ListAccounts'
 import CreateAccount from './Accounts/CreateAccount'
 import EditAccount from './Accounts/EditAccount'
+import TeamAccount from './Accounts/TeamAccount'
+
 
 export {
     // Users
@@ -16,5 +18,6 @@ export {
     // Accounts
     ListAccounts,
     CreateAccount,
-    EditAccount
+    EditAccount,
+    TeamAccount
 }

@@ -10,7 +10,7 @@ const Associate = mongoose.model(
         type: mongoose.Schema.Types.ObjectId,
         ref: "Account"
     },
-    responsible: Boolean    
+    responsible: Boolean
   })
 );
 module.exports = Associate;

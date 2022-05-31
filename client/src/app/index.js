@@ -9,7 +9,7 @@ import useToken from './useToken'
 import Dashboard from '../components/Dashboard/Dashboard'
 import { NavBar } from '../components'
 import { CreateUser, ListUsers, EditUser } from '../pages'
-import { ListAccounts, CreateAccount, EditAccount } from '../pages'
+import { ListAccounts, CreateAccount, EditAccount, TeamAccount } from '../pages'
 
 function App() {
   const { token, setToken } = useToken();
@@ -34,6 +34,7 @@ function App() {
           <Route path="/accounts" element={<ListAccounts />} />
           <Route path="/accounts/create" element={<CreateAccount />} />
           <Route path="/accounts/edit" element={<EditAccount />} />
+          <Route path="/accounts/team" element={<TeamAccount />} />
         </Routes>
         </div>
       </Router>

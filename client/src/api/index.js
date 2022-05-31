@@ -27,6 +27,7 @@ export const deleteAccount = id => api.delete(`/account/${id}`, config())
 
 //Associates
 export const getAvailableAssociates = () => api.get('/getAvailableAssociates', config())
+export const getAccountAssociates = payload => api.post(`/getAccountAssociates`, payload, config())
 
 const apis = {
     //Users
@@ -40,7 +41,8 @@ const apis = {
     updateAccount,
     deleteAccount,
     //Associates
-    getAvailableAssociates
+    getAvailableAssociates,
+    getAccountAssociates
 }
 
 export default apis

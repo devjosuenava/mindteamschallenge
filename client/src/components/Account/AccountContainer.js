@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';import Typography from '@mui/material/Typography';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd'; import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
@@ -59,16 +59,17 @@ export default function AccountContainer({ mode, accountData }) {
     };
 
     const validateForm = () => {
-        if (accountName === "" || clientName === "" )
+        if (accountName === "" || clientName === "")
             return false
         return true
     }
 
-    useEffect( () => {
-     api.getAvailableAssociates()
-     .then( response => {
-         setUsersAvailable(response.data)})
-        .catch( err => {})    
+    useEffect(() => {
+        api.getAvailableAssociates()
+            .then(response => {
+                setUsersAvailable(response.data)
+            })
+            .catch(err => { })
     }, [])
 
     return (
@@ -107,7 +108,7 @@ export default function AccountContainer({ mode, accountData }) {
                             required
                             fullWidth
                             label="Client Name"
-                            autoComplete="Client Name"                            
+                            autoComplete="Client Name"
                             value={clientName}
                             onChange={(event) => { setClientName(event.target.value) }}
                             error={clientName === "" && triedToSubmit ? true : false}
@@ -121,10 +122,27 @@ export default function AccountContainer({ mode, accountData }) {
                             onChange={(event => setUserResponsible(event.target.value))}
                             error={userResponsible === null && triedToSubmit ? true : false}
                         >
-                            <MenuItem disabled value="">
-                                <em>Select a User Responsible from the list</em>
-                            </MenuItem>                            
-                            {usersAvailable.map( user => (                                
+                            {
+                                mode === 'create' ?
+                                <MenuItem disabled value="">
+                                    <em>{
+                                        usersAvailable.length !== 0 ?
+                                            'Select a User Responsible from the list'
+                                            : 'There are no available users to assign as responsible for the account'
+                                    }</em>
+                                </MenuItem>
+                                :
+                                <MenuItem disabled value="">
+                                    <em>{
+                                        userResponsible ?
+                                            userResponsible.fullName
+                                            : usersAvailable.length === 0 ?
+                                                'There are no available users to assign as responsible for the account'
+                                                : 'Select a User Responsible from the list'
+                                    }</em>
+                                </MenuItem>
+                            }
+                            {usersAvailable.map(user => (
                                 <MenuItem key={user._id} value={user}>
                                     {user.fullName}
                                 </MenuItem>

@@ -16,16 +16,16 @@ module.exports = function (app) {
     controller.getAllAssociates
   );
 
-  app.get("/api/getAvailableAssociates",
+  app.post("/api/getAccountAssociates",
     [authJwt.verifyToken, authJwt.isAdminOrSuperAdmin],
-    controller.getAvailableAssociates
+    controller.getAccountAssociates
   );
 
-  app.post(
-    "/api/accounts/create",
-    [authJwt.verifyToken, authJwt.isAdminOrSuperAdmin],
-    controller.createAssociate
-  );
+  // app.post(
+  //   "/api/associate/create",
+  //   [authJwt.verifyToken, authJwt.isAdminOrSuperAdmin],
+  //   controller.createAssociate
+  // );
 
 //   app.put(
 //     '/api/account/:id',

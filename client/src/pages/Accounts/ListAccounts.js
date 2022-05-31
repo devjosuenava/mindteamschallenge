@@ -22,6 +22,11 @@ const ListAccounts = () => {
             onClick: (event, rowData) => navigate('/accounts/edit', { state: { data: rowData } })
         },
         {
+            icon: tableIcons.GroupsIcon,
+            tooltip: 'Team',
+            onClick: (event, rowData) => navigate('/accounts/team', { state: { account: rowData } })
+        },
+        {
             icon: tableIcons.Delete,
             tooltip: 'Delete Account',
             onClick: (event, rowData) => api.deleteAccount(rowData._id)
