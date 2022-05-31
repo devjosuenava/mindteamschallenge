@@ -12,20 +12,19 @@ const ListAccounts = () => {
     const columns = [
         { title: 'Account', field: 'accountName' },
         { title: 'Client', field: 'clientName' },
-        { title: 'Responsible', field: 'responsibleName' }
+        { title: 'Responsible', field: 'userResponsible.fullName' }
     ]
 
     const actions = [
         {
             icon: tableIcons.Edit,
             tooltip: 'Edit Account',
-            // onClick: (event, rowData) => console.log(rowData)
             onClick: (event, rowData) => navigate('/accounts/edit', { state: { data: rowData } })
         },
         {
             icon: tableIcons.Delete,
             tooltip: 'Delete Account',
-            onClick: (event, rowData) => api.deleteUser(rowData._id)
+            onClick: (event, rowData) => api.deleteAccount(rowData._id)
                 .then(
                     result => {
                         setResultMessage({ message: result.data.message, status: result.data.status })
@@ -49,7 +48,7 @@ const ListAccounts = () => {
 
     return (
         <>
-            <h1>Users</h1>
+            <h1>Accounts</h1>
             <TableContainer
                 title="Accounts"
                 columns={columns}
@@ -57,7 +56,7 @@ const ListAccounts = () => {
                 data={data}
                 options={options}
             />
-            <SnackAlert open={open} resultMessage={resultMessage} redirectionUrl='/users' />
+            <SnackAlert open={open} resultMessage={resultMessage} redirectionUrl='/accounts' />
         </>
     )
 }

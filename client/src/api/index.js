@@ -21,6 +21,12 @@ export const deleteUser = id => api.delete(`/user/${id}`, config())
 
 //Accounts
 export const getAllAccounts = () => api.get('/getAllAccounts', config())
+export const createAccount = payload => api.post(`/accounts/create`, payload, config())
+export const updateAccount = (id, payload) => api.put(`/account/${id}`, payload, config())
+export const deleteAccount = id => api.delete(`/account/${id}`, config())
+
+//Associates
+export const getAvailableAssociates = () => api.get('/getAvailableAssociates', config())
 
 const apis = {
     //Users
@@ -29,7 +35,12 @@ const apis = {
     updateUser,
     deleteUser,
     //Accounts
-    getAllAccounts
+    getAllAccounts,
+    createAccount,
+    updateAccount,
+    deleteAccount,
+    //Associates
+    getAvailableAssociates
 }
 
 export default apis

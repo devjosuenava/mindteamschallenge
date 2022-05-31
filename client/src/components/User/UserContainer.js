@@ -173,13 +173,7 @@ export default function UserContainer({ mode, userData }) {
               labelId="roleLabel"
               id="role"
               value={role}
-              label="Role"
-              // renderValue={(selected) => {
-              //   if (selected.length === 0) {
-              //     return <em>Select a role from the menu</em>;
-              //   }
-              //   return selected.join(', ');
-              // }}
+              label="Role"              
               onChange={handleRoleChange}
               error={role === "" && triedToSubmit ? true : false}
             >

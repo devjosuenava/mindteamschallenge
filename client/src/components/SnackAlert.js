@@ -17,8 +17,9 @@ const SnackAlert = ({open, resultMessage, redirectionUrl}) => {
     return (
         <Snackbar 
             open={open} 
-            autoHideDuration={3000} 
-        >
+            autoHideDuration={2000} 
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            >
             <Alert severity={resultMessage.status === 'success' ? 'success' : 'error'} sx={{ width: '100%' }}>
             { resultMessage.message }
             </Alert>

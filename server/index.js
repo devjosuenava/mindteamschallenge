@@ -21,6 +21,7 @@ const db = require("./app/models");
 const User = db.user;
 const Role = db.role;
 const Account = db.account;
+const Associate = db.associate
 
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
@@ -45,6 +46,7 @@ app.get("/", (req, res) => {
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 require("./app/routes/account.routes")(app);
+require("./app/routes/associate.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

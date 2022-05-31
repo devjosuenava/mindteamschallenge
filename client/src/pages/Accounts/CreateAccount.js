@@ -1,7 +1,7 @@
-import { UserContainer } from '../../components'
+import { AccountContainer } from '../../components'
 
 const CreateUser = () => {
-    return <UserContainer mode='create' />
+    return <AccountContainer mode='create' />
 }
 
 export default CreateUser

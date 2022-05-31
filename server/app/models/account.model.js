@@ -4,7 +4,7 @@ const Account = mongoose.model(
   new mongoose.Schema({
     accountName: String,
     clientName: String,
-    responsibleName: {
+    userResponsible: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User"
     }

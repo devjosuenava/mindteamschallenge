@@ -6,7 +6,7 @@ const Dashboard = () => {
     <>
       <Link to='/users'>Users</Link><br/>
       <Link to='/accounts'>Accounts</Link><br/>
-      <Link to='/transfers'>Transfers</Link><br/>
+      <Link to='/associates'>Associates</Link><br/>
     </>
   )
 }
