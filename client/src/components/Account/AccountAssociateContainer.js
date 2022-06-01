@@ -16,9 +16,12 @@ import api from '../../api'
 
 const theme = createTheme()
 
-export default function AccountContainer() {
-    const { state } = useLocation();
+export default function AccountAssociateContainer() {
+    const navigate = useNavigate()
+    const { state } = useLocation()
     const { account } = state
+
+    console.log(state)
 
     const [newAccountAssociate, setNewAccountAssociate] = useState({})
     const [usersAvailable, setUsersAvailable] = useState([])
@@ -28,9 +31,9 @@ export default function AccountContainer() {
     const [triedToSubmit, setTriedToSubmit] = useState(false)
 
     const handleSubmit = (event) => {
-        event.preventDefault()        
+        event.preventDefault()
         setTriedToSubmit(true)
-        if (validateForm()) {  
+        if (validateForm()) {
             api.createAssociate({
                 account: account._id,
                 user: newAccountAssociate._id,
@@ -39,9 +42,11 @@ export default function AccountContainer() {
             .then(result => {
                 setResultMessage({ message: result.data.message, status: result.data.status })
                 setOpen(true)
-                setTimeout(() => setOpen(false), 3000)
+                setTimeout(() => {
+                    navigate('/accounts/team', { state: { account: account } })
+                }, 2000)
             })
-            .catch(error => { })            
+            .catch(error => { })
         }
     };
 
@@ -92,12 +97,12 @@ export default function AccountContainer() {
                                         'Select a new Account Associate from the list'
                                         : 'There are no available users to assign as Account Associates for the account'
                                 }</em>
-                            </MenuItem>                            
+                            </MenuItem>
                             {usersAvailable.map(user => (
                                 <MenuItem key={user._id} value={user}>
                                     {user.fullName}
                                 </MenuItem>
-                                ))
+                            ))
                             }
                         </Select>
                         <Button
@@ -108,7 +113,7 @@ export default function AccountContainer() {
                         >
                             Set New Account Associate
                         </Button>
-                        <SnackAlert open={open} resultMessage={resultMessage} redirect={true} redirectionUrl='/accounts' />
+                        <SnackAlert open={open} resultMessage={resultMessage} redirect={false} redirectionUrl='/accounts/team' />
                     </Box>
                 </Box>
             </Container>

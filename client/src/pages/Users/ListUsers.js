@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
-import { TableContainer, tableIcons, SnackAlert } from '../../components'
+import { TableContainer, tableIcons, SnackAlert, FormHeader } from '../../components'
 import { useNavigate } from "react-router-dom";
 import api from '../../api'
 
-const ListUsers = () => {
+const ListUsers = ({auth}) => {
   const navigate = useNavigate();
   const [ data, setData ] = useState([])
   const [ open, setOpen ] = useState(false)
@@ -19,7 +19,6 @@ const ListUsers = () => {
     {
       icon: tableIcons.Edit,
       tooltip: 'Edit User',
-      // onClick: (event, rowData) => console.log(rowData)
       onClick: (event, rowData) => navigate('/users/edit', { state: { data: rowData }})
     },
     {
@@ -30,7 +29,7 @@ const ListUsers = () => {
           result => {
             setResultMessage({message: result.data.message, status: result.data.status})
             setOpen(true)
-            setTimeout(() => setOpen(false), 1000)
+            setTimeout(() => setOpen(false), 2000)
             setData( data.filter( item => item._id !== rowData._id ))
           }
         )
@@ -49,7 +48,14 @@ const ListUsers = () => {
 
   return (
     <>
-      <h1>Users</h1>
+      <FormHeader
+        header="List of Users"
+        button={
+          {
+            text: "Create User",
+            url:"/users/create"}
+          }
+      />
       <TableContainer
         title="Users"
         columns={columns}

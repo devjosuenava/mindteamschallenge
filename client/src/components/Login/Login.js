@@ -1,5 +1,6 @@
 import React from 'react';
 import './Login.css';
+import Logo from '../utils/Logo'
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -26,18 +27,20 @@ const Login = ({ setToken }) => {
 
   return (
     <div className="login-wrapper">
-      <h1>Please Log In</h1>
+      <Logo />
+      <h1>Mind Teams</h1>
+      <h2>Log In</h2>
       <form onSubmit={ handleSubmit }>
         <label>
-          <p>Username</p>
-          <input type="text" onChange={ e => setEmail(e.target.value) }/>
+          <p className="text">Username</p>
+          <input className="input" type="text"  onChange={ e => setEmail(e.target.value) }/>
         </label>
         <label>
-          <p>Password</p>
-          <input type="password" onChange={ e => setPassword(e.target.value) }/>
+          <p className="text">Password</p>
+          <input className="input" type="password" onChange={ e => setPassword(e.target.value) }/>
         </label>
         <div>
-          <button type="submit">Submit</button>
+          <button className="btnLogin" type="submit">Submit</button>
         </div>
       </form>
     </div>

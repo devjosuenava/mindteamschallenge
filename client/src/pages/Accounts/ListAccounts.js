@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { TableContainer, tableIcons, SnackAlert } from '../../components'
+import { TableContainer, tableIcons, SnackAlert, FormHeader } from '../../components'
 import { useNavigate } from "react-router-dom";
 import api from '../../api'
 
@@ -53,10 +53,14 @@ const ListAccounts = () => {
 
     return (
         <>
-            <h1>Accounts</h1>
-            <p onClick={ () => navigate('/accounts/create') }>
-                Add Account
-            </p>
+            <FormHeader
+            header="List of Accounts"
+            button={
+                {
+                    text: "Create Account",
+                    url:"/accounts/create"}
+                }
+            />
             <TableContainer
                 title="Accounts"
                 columns={columns}

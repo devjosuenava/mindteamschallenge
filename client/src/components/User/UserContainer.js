@@ -17,11 +17,12 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
 import { useState } from 'react'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SnackAlert } from '..'
+import '../../styles/FormHeader.css'
 import api from '../../api'
 
 const theme = createTheme()
 
-export default function UserContainer({ mode, userData }) {
+export default function UserContainer({ auth, mode, userData }) {
   const [fullName, setFullName] = userData ? useState(userData.fullName) : useState('')
   const [email, setEmail] = userData ? useState(userData.email) : useState('')
   const [emailError, setEmailError] = useState(false)
@@ -173,7 +174,7 @@ export default function UserContainer({ mode, userData }) {
               labelId="roleLabel"
               id="role"
               value={role}
-              label="Role"              
+              label="Role"
               onChange={handleRoleChange}
               error={role === "" && triedToSubmit ? true : false}
             >

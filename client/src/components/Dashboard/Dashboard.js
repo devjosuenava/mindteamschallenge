@@ -1,13 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import Logo from '../utils/Logo'
+import './Dashboard.css'
 
 const Dashboard = () => {
   return (
-    <>
-      <Link to='/users'>Users</Link><br/>
-      <Link to='/accounts'>Accounts</Link><br/>
-      <Link to='/transfers'>Transfers</Link><br/>
-    </>
+    <div className="dashboard">
+      <Logo/ ><h1>Mind Teams Challenge</h1>
+    </div>
   )
 }
 

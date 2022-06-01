@@ -1,13 +1,9 @@
 import { useState, useEffect } from "react"
-import { TableContainer, tableIcons, SnackAlert } from '../../components'
-import { useNavigate } from "react-router-dom";
+import { TableContainer } from '../../components'
 import api from '../../api'
 
 const ListTransfers = () => {
-    const navigate = useNavigate();
     const [data, setData] = useState([])
-    const [open, setOpen] = useState(false)
-    const [resultMessage, setResultMessage] = useState({ message: '', status: '' })
 
     const columns = [
         { title: 'Account', field: 'account.accountName' },
@@ -18,7 +14,12 @@ const ListTransfers = () => {
 
     useEffect(() => {
         api.getAllTransfers()
-            .then(response => setData(response.data))
+            .then(response => {
+                response.data.forEach(transfer => {
+                    transfer.date = transfer.date.split('T')[0]
+                })
+                setData(response.data)
+            })
             .catch(err => { })
     }, [])
 
@@ -30,7 +31,6 @@ const ListTransfers = () => {
                 columns={columns}
                 data={data}
             />
-            <SnackAlert open={open} resultMessage={resultMessage} redirectionUrl='/transfers' />
         </>
     )
 }
