@@ -11,6 +11,7 @@ import Edit from "@material-ui/icons/Edit";
 import FilterList from "@material-ui/icons/FilterList";
 import FirstPage from "@material-ui/icons/FirstPage";
 import GroupsIcon from '@mui/icons-material/Groups';
+import GroupRemoveIcon from '@mui/icons-material/GroupRemove';
 import LastPage from "@material-ui/icons/LastPage";
 import Remove from "@material-ui/icons/Remove";
 import SaveAlt from "@material-ui/icons/SaveAlt";
@@ -30,6 +31,7 @@ const tableIcons = {
   FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
   LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
   GroupsIcon: forwardRef((props, ref) => <GroupsIcon {...props} ref={ref} />),
+  GroupRemoveIcon: forwardRef((props, ref) => <GroupRemoveIcon {...props} ref={ref} />),
   NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
   PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
   ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),

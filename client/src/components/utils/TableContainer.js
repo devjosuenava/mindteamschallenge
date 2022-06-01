@@ -1,5 +1,5 @@
 import MaterialTable from '@material-table/core'
-import tableIcons from './MaterialTableIcons'
+import tableIcons from '../utils/MaterialTableIcons'
 
 export default function TableContainer({ title, columns, actions, options, data }) {
   return (

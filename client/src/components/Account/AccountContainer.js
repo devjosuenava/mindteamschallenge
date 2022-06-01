@@ -65,7 +65,7 @@ export default function AccountContainer({ mode, accountData }) {
     }
 
     useEffect(() => {
-        api.getAvailableAssociates()
+        api.getAvailableUsers()
             .then(response => {
                 setUsersAvailable(response.data)
             })
@@ -157,7 +157,7 @@ export default function AccountContainer({ mode, accountData }) {
                         >
                             {accountData ? 'Update' : 'Register'}
                         </Button>
-                        <SnackAlert open={open} resultMessage={resultMessage} redirectionUrl='/accounts' />
+                        <SnackAlert open={open} resultMessage={resultMessage} redirect={true} redirectionUrl='/accounts' />
                     </Box>
                 </Box>
             </Container>

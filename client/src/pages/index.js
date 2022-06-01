@@ -5,10 +5,13 @@ import EditUser from './Users/EditUser'
 
 //Accounts
 import ListAccounts from './Accounts/ListAccounts'
+import ListAccountsTeam from './Accounts/ListAccountsTeam'
 import CreateAccount from './Accounts/CreateAccount'
 import EditAccount from './Accounts/EditAccount'
-import TeamAccount from './Accounts/TeamAccount'
+import CreateAccountAssociate from './Accounts/CreateAccountAssociate'
 
+//Transfers
+import ListTransfers from './Transfers/ListTransfers'
 
 export {
     // Users
@@ -17,7 +20,10 @@ export {
     EditUser,
     // Accounts
     ListAccounts,
+    ListAccountsTeam,
     CreateAccount,
+    CreateAccountAssociate,
     EditAccount,
-    TeamAccount
+    //Transfers
+    ListTransfers
 }

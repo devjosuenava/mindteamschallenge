@@ -9,8 +9,8 @@ import useToken from './useToken'
 import Dashboard from '../components/Dashboard/Dashboard'
 import { NavBar } from '../components'
 import { CreateUser, ListUsers, EditUser } from '../pages'
-import { ListAccounts, CreateAccount, EditAccount, TeamAccount } from '../pages'
-
+import { ListAccounts, ListAccountsTeam, CreateAccount, EditAccount, CreateAccountAssociate } from '../pages'
+import { ListTransfers } from '../pages'
 function App() {
   const { token, setToken } = useToken();
   if (!token) {
@@ -34,7 +34,10 @@ function App() {
           <Route path="/accounts" element={<ListAccounts />} />
           <Route path="/accounts/create" element={<CreateAccount />} />
           <Route path="/accounts/edit" element={<EditAccount />} />
-          <Route path="/accounts/team" element={<TeamAccount />} />
+          <Route path="/accounts/team" element={<ListAccountsTeam />} />
+          <Route path="/accounts/team/create" element={<CreateAccountAssociate />} />
+          {/* Transfers */}
+          <Route path="/transfers" element={<ListTransfers />} />
         </Routes>
         </div>
       </Router>

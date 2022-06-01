@@ -5,6 +5,7 @@ var bcrypt = require("bcryptjs")
 
 exports.getAllUsers = async (req, res) => {
   const users = await User.find().populate('role')
+  console.log(users)
   res.status(200).send(users)
 };
 

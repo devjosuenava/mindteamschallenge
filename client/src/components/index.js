@@ -1,10 +1,11 @@
-import Logo from './Logo'
-import NavBar from './NavBar'
-import TableContainer from './TableContainer'
+import Logo from './Navbar/Logo'
+import NavBar from './Navbar/NavBar'
+import TableContainer from './utils/TableContainer'
 import UserContainer from './User/UserContainer'
 import AccountContainer from './Account/AccountContainer'
-import tableIcons from './MaterialTableIcons'
-import SnackAlert from './SnackAlert'
+import AccountAssociateContainer from './Account/AccountAssociateContainer'
+import tableIcons from './utils/MaterialTableIcons'
+import SnackAlert from './utils/SnackAlert'
 
 export {
     Logo,
@@ -12,6 +13,7 @@ export {
     TableContainer,
     UserContainer,
     AccountContainer,
+    AccountAssociateContainer,
     tableIcons,
     SnackAlert
 }

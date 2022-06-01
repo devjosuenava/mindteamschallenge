@@ -197,7 +197,7 @@ export default function UserContainer({ mode, userData }) {
             >
               {userData ? 'Update' : 'Register'}
             </Button>
-            <SnackAlert open={open} resultMessage={resultMessage} redirectionUrl='/users' />
+            <SnackAlert open={open} resultMessage={resultMessage} redirect={true} redirectionUrl='/users' />
           </Box>
         </Box>
       </Container>

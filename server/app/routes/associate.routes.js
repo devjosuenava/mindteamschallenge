@@ -21,21 +21,20 @@ module.exports = function (app) {
     controller.getAccountAssociates
   );
 
-  // app.post(
-  //   "/api/associate/create",
-  //   [authJwt.verifyToken, authJwt.isAdminOrSuperAdmin],
-  //   controller.createAssociate
-  // );
+  app.get("/api/getAvailableUsers",
+    [authJwt.verifyToken, authJwt.isAdminOrSuperAdmin],
+    controller.getAvailableUsers
+  );
 
-//   app.put(
-//     '/api/account/:id',
-//     [authJwt.verifyToken, authJwt.isAdminOrSuperAdmin],
-//     controller.updateAccount
-//   );
+  app.post(
+    "/api/associates/create",
+    [authJwt.verifyToken, authJwt.isAdminOrSuperAdmin],
+    controller.createAssociate
+  );
 
-//   app.delete(
-//     '/api/account/:id',
-//     [authJwt.verifyToken, authJwt.isAdminOrSuperAdmin],
-//     controller.deleteAccount
-//   )
+  app.delete(
+    '/api/associate/:id',
+    [authJwt.verifyToken, authJwt.isAdminOrSuperAdmin],
+    controller.deleteAssociate
+  )
 };

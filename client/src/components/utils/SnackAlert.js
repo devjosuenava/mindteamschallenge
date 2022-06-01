@@ -3,21 +3,21 @@ import Alert from '@mui/material/Alert';
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react';
 
-const SnackAlert = ({open, resultMessage, redirectionUrl}) => {
+const SnackAlert = ({open, resultMessage, redirect, redirectionUrl}) => {
     const navigate = useNavigate()
 
     useEffect( () => {
         setTimeout( () => {
             if (resultMessage.status === 'success'){            
-                navigate(redirectionUrl)        
+                if (redirect) navigate(redirectionUrl)
             }        
-        }, 3000)        
+        }, 2000)        
     })
     
     return (
         <Snackbar 
             open={open} 
-            autoHideDuration={2000} 
+            autoHideDuration={1000} 
             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             >
             <Alert severity={resultMessage.status === 'success' ? 'success' : 'error'} sx={{ width: '100%' }}>

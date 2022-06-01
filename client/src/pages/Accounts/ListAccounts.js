@@ -34,7 +34,7 @@ const ListAccounts = () => {
                     result => {
                         setResultMessage({ message: result.data.message, status: result.data.status })
                         setOpen(true)
-                        setTimeout(() => setOpen(false), 3000)
+                        setTimeout(() => setOpen(false), 1000)
                         setData(data.filter(item => item._id !== rowData._id))
                     }
                 )
@@ -54,6 +54,9 @@ const ListAccounts = () => {
     return (
         <>
             <h1>Accounts</h1>
+            <p onClick={ () => navigate('/accounts/create') }>
+                Add Account
+            </p>
             <TableContainer
                 title="Accounts"
                 columns={columns}

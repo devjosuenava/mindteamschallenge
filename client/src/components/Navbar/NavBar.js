@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
-import "../styles/navbar.css"
-import Logo from './Logo'
+import { Link, Navigate } from 'react-router-dom';
+import "../../styles/navbar.css"
+import Logo from '../Navbar/Logo'
 
 // Pages
-import { CreateUser } from '../pages'
+import { CreateUser } from '../../pages'
 
 export default function Navbar(){
     const [ isNavExpanded, setIsNavExpanded ] = useState(false)
@@ -42,6 +42,14 @@ export default function Navbar(){
                             <Link to="/users/create" element={ <CreateUser />} className="nav-link" onClick={ () => { setIsNavExpanded(!isNavExpanded); } }>
                                 Create User
                             </Link>
+                        </li>
+                        <li>
+                            <p element={ <CreateUser />} className="nav-link" onClick={ () => { 
+                                window.localStorage.removeItem("token")
+                                window.location.href = '/'
+                            } }>
+                                Logout
+                            </p>
                         </li>
                     </ul>
                 </div>

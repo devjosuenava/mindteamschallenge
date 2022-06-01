@@ -30,8 +30,9 @@ const ListUsers = () => {
           result => {
             setResultMessage({message: result.data.message, status: result.data.status})
             setOpen(true)
-            setTimeout(() => setOpen(false), 3000)
-            setData( data.filter( item => item._id !== rowData._id ))          }
+            setTimeout(() => setOpen(false), 1000)
+            setData( data.filter( item => item._id !== rowData._id ))
+          }
         )
     }
   ]

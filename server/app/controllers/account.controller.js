@@ -1,7 +1,19 @@
+const { transfer } = require("../models");
 const db = require("../models");
-const { findOneAndDelete } = require("../models/user.model");
 const Account = db.mongoose.model('Account', db.account.schema)
 const Associate = db.mongoose.model('Associate', db.associate.schema)
+const Transfer = db.mongoose.model('Transfer', db.transfer.schema)
+
+const createTransfer = (transferData) => {
+  const transfer = new Transfer({
+    account: transferData.account,
+    user: transferData.user,
+    type: transferData.type,
+    date: new Date().toISOString()
+  })
+  transfer.save()
+}
+
 
 exports.getAllAccounts = async (req, res) => {
   const accounts = await Account.find().populate('userResponsible')
@@ -18,15 +30,21 @@ exports.createAccount = async (req, res) => {
     if (err) {
       res.status(500).send({ message: err });
       return;
-    }
+    }    
     const associate = new Associate({
       user: account.userResponsible,
       account: account._id,
       responsible: true
     })
-    associate.save()
-    res.send({ message: "The Account was registered successfully!", status: 'success' });
-  });
+    associate.save((err, associate) => {
+      createTransfer({
+        account: associate.account._id,
+        user: associate.user._id,
+        type: 'ASSIGNMENT'
+      })    
+    })    
+  })
+  res.send({ message: "The Account was registered successfully!", status: 'success' })
 };
 
 exports.updateAccount= async (req, res) => {
@@ -34,15 +52,27 @@ exports.updateAccount= async (req, res) => {
   if (account.accountName !==req.body.accountName) account.accountName = req.body.accountName
   if (account.clientName !== req.body.clientName) account.clientName = req.body.clientName
   if (account.toObject().hasOwnProperty('userResponsible')) {
-    if(account.userResponsible._id.toString() !== req.body.userResponsible._id){
-      await Associate.findOneAndDelete({ account: account._id })
+    if(account.userResponsible._id !== req.body.userResponsible._id){      
+      const existingAssociate = await Associate.findOne({account: account._id})
+      createTransfer({
+        account: existingAssociate.account._id,
+        user: existingAssociate.user._id,
+        type: 'UNASSIGNMENT'
+      })
+      await Associate.deleteOne({account: account._id})
       account.userResponsible = req.body.userResponsible
       const associate = new Associate({
         user: account.userResponsible,
         account: account._id,
         responsible: true
       })
-      associate.save().then('created')
+      associate.save((err, associate) => {
+        createTransfer({
+          account: associate.account._id,
+          user: associate.user._id,
+          type: 'ASSIGNMENT'
+        })    
+      })
     }
   } else {
     account.userResponsible = req.body.userResponsible
@@ -51,7 +81,13 @@ exports.updateAccount= async (req, res) => {
       account: account._id,
       responsible: true
     });
-    associate.save()
+    associate.save((err, associate) => {
+      createTransfer({
+        account: associate.account._id,
+        user: associate.user._id,
+        type: 'ASSIGNMENT'
+      })    
+    })
   }
   await Account.updateOne({ _id: req.params.id }, {
     $set: {
