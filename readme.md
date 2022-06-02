@@ -15,27 +15,27 @@ Sadly, I must say that I wasn't capable to finish a 100% of the requirements des
 
 <h3 align="center">Project setup</h3>
 
-* Set up a database in Mongodb with the name 'mindteamschallenge'.
-* Set up Mongodb to run in your localhost with the port 27017, so we can connect to the database with the command mongodb://localhost:27017
-* Clone the project.
-* I recommend using two terminals so we can run the node server on one and the react application on another.
-* Terminal # 1: Run 'npm install' at the root of the folder.
-* Terminal # 1: Run 'node index.js' (if you have the package 'nodemon' installed, you can run 'nodemon index.js').
-* Terminal # 1: You should see a few messages notifying you of the creation of three default users with the roles [superadmin, admin, user].
-* Open Terminal # 2.
-* Terminal # 2: Navigate to the 'mindteamschallenge' directory'.
-* Terminal # 2: Navigate to the 'client' directory.
-* Terminal # 2: Run the 'npm install' command (if you run into any issues related to some dependencies, try the '--legacy-peer-deps' at the end of the command).
-* Terminal # 2: Run the 'npm start' command to start the react project and your default browser should automatically open.
-* Done.
+- Set up a database in Mongodb with the name 'mindteamschallenge'.
+- Set up Mongodb to run in your localhost with the port 27017, so we can connect to the database with the command mongodb://localhost:27017
+- Clone the project.
+- I recommend using two terminals so we can run the node server on one and the react application on another.
+- Terminal # 1: Run 'npm install' at the root of the folder.
+- Terminal # 1: Run 'node index.js' (if you have the package 'nodemon' installed, you can run 'nodemon index.js').
+- Terminal # 1: You should see a few messages notifying you of the creation of three default users with the roles [superadmin, admin, user].
+- Open Terminal # 2.
+- Terminal # 2: Navigate to the 'mindteamschallenge' directory'.
+- Terminal # 2: Navigate to the 'client' directory.
+- Terminal # 2: Run the 'npm install' command (if you run into any issues related to some dependencies, try the '--legacy-peer-deps' at the end of the command).
+- Terminal # 2: Run the 'npm start' command to start the react project and your default browser should automatically open.
+- Done.
 
 <h3 align="center">Mind Teams Challenge WebSite User Guide</h3>
 
 * Access 'http://localhost:8000/' and you'll presented with the Login Page and your credentials, we created some at the project setup:
-        * Username: super@admin.com - Password: asd123, user with SuperAdmin privileges.
-        * Username: admin@admin.com - Password: asd123, user with Admin privileges.
-        * Username: user@user.com - Password: asd123, user with User privileges.
-    * Choose some credentials and access the site.
+    - Username: super@admin.com - Password: asd123, user with SuperAdmin privileges.
+    - Username: admin@admin.com - Password: asd123, user with Admin privileges.
+    - Username: user@user.com - Password: asd123, user with User privileges.
+* Choose some credentials and access the site.
 
 Depending on the role assigned to your user you should have some functionality available.
 - Admin and SuperAdmin level users have access to:
