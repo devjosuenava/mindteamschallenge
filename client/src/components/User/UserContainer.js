@@ -18,6 +18,7 @@ import { useState } from 'react'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SnackAlert } from '..'
 import '../../styles/FormHeader.css'
+import '../../styles/index.css'
 import api from '../../api'
 
 const theme = createTheme()
@@ -106,22 +107,22 @@ export default function UserContainer({ auth, mode, userData }) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="md">
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 2,
+            marginTop: 5,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
-          }}
+            alignItems: 'center'
+        }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'gray' }}>
             <PersonAddAltIcon />
           </Avatar>
-          <Typography component="h1" variant="h4">
+          <h1>
             {mode === 'create' ? 'Create a new User' : 'Edit the User'}
-          </Typography>
+          </h1>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -191,12 +192,20 @@ export default function UserContainer({ auth, mode, userData }) {
               ))}
             </Select>
             <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ 
+                    mt: 3, 
+                    mb: 2, 
+                    bgcolor: '#3A393E',
+                    ':hover': {
+                        bgcolor: '#75737a', // theme.palette.primary.main
+                        color: 'white',
+                    }, 
+                }}
             >
-              {userData ? 'Update' : 'Register'}
+              {userData ? 'Update User' : 'Register User'}
             </Button>
             <SnackAlert open={open} resultMessage={resultMessage} redirect={true} redirectionUrl='/users' />
           </Box>

@@ -9,9 +9,8 @@ import Container from '@mui/material/Container';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import IconButton from "@material-ui/core/IconButton"
 import { useEffect, useState } from 'react'
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import { SnackAlert } from '..'
 import api from '../../api'
 
@@ -74,22 +73,22 @@ export default function AccountContainer({ mode, accountData }) {
 
     return (
         <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="md">
                 <CssBaseline />
                 <Box
                     sx={{
-                        marginTop: 2,
+                        marginTop: 5,
                         display: 'flex',
                         flexDirection: 'column',
-                        alignItems: 'center',
+                        alignItems: 'center'
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'gray' }}>
+                    <Avatar sx={{ m: 1, bgcolor: '#3A393E' }}>
                         <AssignmentIndIcon />
                     </Avatar>
-                    <Typography component="h1" variant="h4">
+                    <h1>
                         {mode === 'create' ? 'Create a new Account' : 'Edit the Account'}
-                    </Typography>
+                    </h1>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         <TextField
                             margin="normal"
@@ -97,11 +96,11 @@ export default function AccountContainer({ mode, accountData }) {
                             fullWidth
                             label="Account Name"
                             autoComplete="accountName"
-                            autoFocus
+                            autoFocus                            
                             value={accountName}
                             onChange={(event) => { setAccountName(event.target.value) }}
                             error={accountName === "" && triedToSubmit ? true : false}
-                            helperText={accountName === "" && triedToSubmit ? 'Please type the account name' : ''}
+                            helperText={accountName === "" && triedToSubmit ? 'Please type the account name' : ''}                            
                         />
                         <TextField
                             margin="normal"
@@ -135,9 +134,9 @@ export default function AccountContainer({ mode, accountData }) {
                                 <MenuItem disabled value="">
                                     <em>{
                                         userResponsible ?
-                                            userResponsible.fullName
+                                            "The User assigned as responsible for this Account is: " +  userResponsible.fullName
                                             : usersAvailable.length === 0 ?
-                                                'There are no available users to assign as responsible for the account'
+                                                "There are no available users to assign as responsible for the account."
                                                 : 'Select a User Responsible from the list'
                                     }</em>
                                 </MenuItem>
@@ -153,9 +152,17 @@ export default function AccountContainer({ mode, accountData }) {
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
+                            sx={{ 
+                                mt: 3, 
+                                mb: 2, 
+                                bgcolor: '#3A393E',
+                                ':hover': {
+                                    bgcolor: '#75737a', // theme.palette.primary.main
+                                    color: 'white',
+                                }, 
+                            }}
                         >
-                            {accountData ? 'Update' : 'Register'}
+                            {accountData ? 'Update Account' : 'Register account'}
                         </Button>
                         <SnackAlert open={open} resultMessage={resultMessage} redirect={true} redirectionUrl='/accounts' />
                     </Box>

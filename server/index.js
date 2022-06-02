@@ -91,10 +91,10 @@ function initial() {
   });
   User.estimatedDocumentCount(async (err, count) => {
     if (!err && count === 0) {
-      const user = new User({
+      let user = new User({
         fullName: "superadmin",
         email: "super@admin.com",
-        password: bcrypt.hashSync("123", 8)
+        password: bcrypt.hashSync("asd123", 8)
       });
       user.save((err, user) => {
         if (err) {
@@ -112,13 +112,55 @@ function initial() {
           }
         );
       });
+      user = new User({
+        fullName: "admin",
+        email: "admin@admin.com",
+        password: bcrypt.hashSync("asd123", 8)
+      });
+      user.save((err, user) => {
+        if (err) {
+          res.status(500).send({ message: err });
+          return;
+        }
+        Role.findOne(
+          {
+            name: "admin"
+          },
+          (err, role) => {
+            user.role = role._id;
+            user.save();
+            console.log("added user: admin@admin.com to Users collection");
+          }
+        );
+      });
+      user = new User({
+        fullName: "user",
+        email: "user@user.com",
+        password: bcrypt.hashSync("asd123", 8)
+      });
+      user.save((err, user) => {
+        if (err) {
+          res.status(500).send({ message: err });
+          return;
+        }
+        Role.findOne(
+          {
+            name: "user"
+          },
+          (err, role) => {
+            user.role = role._id;
+            user.save();
+            console.log("added user: user@user.com to Users collection");
+          }
+        );
+      });
     }
   });
   Account.estimatedDocumentCount((err, count) => {
     if (!err && count === 0) {
       new Account({
         accountName: "Arkus Account",
-        clientName: "Roberto Ramirez"
+        clientName: "My Contact"
       }).save(err => {
         if (err) {
           console.log("error", err);
