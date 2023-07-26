@@ -2,7 +2,7 @@
 
 - 🔭 You're watching my submission for the Mind Teams Challenge at https://github.com/devjosuenava/mindteamschallenge
 
-- 📫 How to reach me **devjosuenava@gmail.com**
+- 📫 You can reach me at **devjosuenava@gmail.com**
 
 <h3 align="center">Project development description</h3>
 
